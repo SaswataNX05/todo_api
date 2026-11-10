@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 const Task = require('../models/Task');
 const protect = require('../middleware/auth');
+const upload = require('../middleware/upload');
 
-// All routes below this line require a valid token
 router.use(protect);
 
-// 1. GET all tasks
+// GET all tasks for user
 router.get('/', async (req, res) => {
   try {
     const tasks = await Task.find({ user: req.user.id }).sort({ createdAt: -1 });
@@ -16,52 +16,61 @@ router.get('/', async (req, res) => {
   }
 });
 
-// 2. POST create a new task
-router.post('/', async (req, res) => {
+// POST create task with optional image
+router.post('/', upload.single('image'), async (req, res) => {
   try {
     const { title, description } = req.body;
-    if (!title) {
+    if (!title || !title.trim()) {
       return res.status(400).json({ message: 'Title is required' });
     }
 
-    const newTask = await Task.create({ user: req.user.id, title, description });
+    const taskData = {
+      user: req.user.id,
+      title: title.trim(),
+      description: description ? description.trim() : '',
+      image: req.file ? `/uploads/${req.file.filename}` : null,
+    };
+
+    const newTask = await Task.create(taskData);
     res.status(201).json(newTask);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 });
 
-// 3. PUT update task (only if owned by this user)
-router.put('/:id', async (req, res) => {
+// PUT update task
+router.put('/:id', upload.single('image'), async (req, res) => {
   try {
+    const updateData = { ...req.body };
+    if (req.file) {
+      updateData.image = `/uploads/${req.file.filename}`;
+    }
+
     const updatedTask = await Task.findOneAndUpdate(
       { _id: req.params.id, user: req.user.id },
-      req.body,
+      updateData,
       { new: true, runValidators: true }
     );
 
     if (!updatedTask) {
-      return res.status(404).json({ message: 'Task not found or Unauthorized' });
+      return res.status(404).json({ message: 'Task not found or unauthorized' });
     }
-
     res.status(200).json(updatedTask);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 });
 
-// 4. DELETE a task by ID
+// DELETE task
 router.delete('/:id', async (req, res) => {
   try {
     const deletedTask = await Task.findOneAndDelete({
       _id: req.params.id,
       user: req.user.id,
     });
-
     if (!deletedTask) {
-      return res.status(404).json({ message: 'Task not found or Unauthorized' });
+      return res.status(404).json({ message: 'Task not found or unauthorized' });
     }
-
     res.status(200).json({ message: 'Task deleted successfully' });
   } catch (error) {
     res.status(500).json({ error: error.message });
