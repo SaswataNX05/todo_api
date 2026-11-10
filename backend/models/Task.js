@@ -21,6 +21,7 @@ const taskSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    image: { type: String, default: null }, // Stores relative path e.g. /uploads/image.png
   },
   {
     timestamps: true,
