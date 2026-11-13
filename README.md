@@ -272,8 +272,8 @@ http://localhost:5000/api
 - **Request Body**:
   ```json
   {
-    "name": "Alex Doe",
-    "email": "alex@example.com",
+    "name": "Sonu Sood",
+    "email": "Sonu@example.com",
     "password": "securepassword123"
   }
   ```
