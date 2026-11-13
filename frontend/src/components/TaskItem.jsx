@@ -1,5 +1,5 @@
 const TaskItem = ({ task, onToggle, onDelete }) => {
-  const BASE_URL = 'http://localhost:5000';
+  const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
   const formattedDate = task.createdAt
     ? new Date(task.createdAt).toLocaleDateString(undefined, {
         month: 'short',
