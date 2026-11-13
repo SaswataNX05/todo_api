@@ -1,38 +1,48 @@
 # 📝 Full-Stack To-Do & Task Management Application
 
+<!-- Badges / Tech Tags -->
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![NodeJS](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
+![MongoDB Atlas](https://img.shields.io/badge/MongoDB_Atlas-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
+![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)
+
+<p align="center">
 A modern, full-stack Task Management application built with the **MERN** stack (MongoDB, Express, React, Node.js). It features JWT-based user authentication, protected routes, task management with image attachments via Multer, real-time client-side search and status filtering, and visual progress tracking.
+</p>
+
+[🚀 Key Features](#-features) • [💻 Local Setup](#-getting-started) • [📡 API Documentation](#-api-documentation)
+
+
 
 ---
 
 ## 📑 Table of Contents
 
-- [📝 Full-Stack To-Do \& Task Management Application](#-full-stack-to-do--task-management-application)
-  - [📑 Table of Contents](#-table-of-contents)
-  - [✨ Features](#-features)
-  - [🛠️ Tech Stack](#️-tech-stack)
-    - [Frontend](#frontend)
-    - [Backend](#backend)
-  - [📐 Architecture \& Workflow](#-architecture--workflow)
-  - [📂 Project Structure](#-project-structure)
-  - [🚀 Getting Started](#-getting-started)
-    - [Prerequisites](#prerequisites)
-    - [1. Backend Setup](#1-backend-setup)
-    - [2. Frontend Setup](#2-frontend-setup)
-  - [🔑 Environment Variables](#-environment-variables)
-  - [📡 API Documentation](#-api-documentation)
-    - [Base URL](#base-url)
-    - [Authentication Endpoints](#authentication-endpoints)
-      - [1. Register User](#1-register-user)
-      - [2. Login User](#2-login-user)
-    - [Task Endpoints (Protected)](#task-endpoints-protected)
-      - [1. Get All Tasks](#1-get-all-tasks)
-      - [2. Create Task](#2-create-task)
-      - [3. Update Task](#3-update-task)
-      - [4. Delete Task](#4-delete-task)
-  - [📜 Available Scripts](#-available-scripts)
-    - [In `/backend`](#in-backend)
-    - [In `/frontend`](#in-frontend)
+<details open>
+<summary><b>📑 Table of Contents</b> (Click to collapse/expand)</summary>
+<br>
+
+| 📌 Overview & Setup | ⚙️ Architecture & Reference |
+| :--- | :--- |
+| • [📝 Full-Stack To-Do \& Task Management Application](#-full-stack-to-do--task-management-application) | • [📐 Architecture \& Workflow](#-architecture--workflow) |
+| • [✨ Features](#-features) | • [📂 Project Structure](#-project-structure) |
+| • [🛠️ Tech Stack](#️-tech-stack) | • [🔑 Environment Variables](#-environment-variables) |
+| &nbsp;&nbsp;&nbsp;↳ [Frontend](#frontend) | • [📡 API Documentation](#-api-documentation) |
+| &nbsp;&nbsp;&nbsp;↳ [Backend](#backend) | &nbsp;&nbsp;&nbsp;↳ [Base URL](#base-url) |
+| • [🚀 Getting Started](#-getting-started) | &nbsp;&nbsp;&nbsp;↳ [Authentication Endpoints](#authentication-endpoints) |
+| &nbsp;&nbsp;&nbsp;↳ [Prerequisites](#prerequisites) | &nbsp;&nbsp;&nbsp;↳ [Task Endpoints (Protected)](#task-endpoints-protected) |
+| &nbsp;&nbsp;&nbsp;↳ [1. Backend Setup](#1-backend-setup) | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| &nbsp;&nbsp;&nbsp;↳ [2. Frontend Setup](#2-frontend-setup) | &nbsp;&nbsp;&nbsp;
+| • [📜 Available Scripts](#-available-scripts) | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| • [📄 License](#-license) | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   - [📄 License](#-license)
+</details>
 
 ---
 
