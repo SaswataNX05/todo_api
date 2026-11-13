@@ -74,145 +74,205 @@ const Dashboard = () => {
   const progressPercent = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
 
   return (
-    <div style={{ maxWidth: '720px', margin: '2.5rem auto', padding: '0 1rem' }}>
-      {/* Top Header */}
-      <header
-        className="glass-panel"
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          padding: '1.25rem 1.5rem',
-          borderRadius: 'var(--radius-lg)',
-          marginBottom: '1.5rem',
-        }}
-      >
-        <div>
-          <span style={{ fontSize: '0.8rem', color: '#6A89A7', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: '700' }}>
-            Personal Workspace
-          </span>
-          <h2 style={{ fontSize: '1.4rem', fontWeight: '800', color: '#384959' }}>{user?.name}</h2>
-        </div>
-        <button
-          onClick={logout}
+    <div
+      style={{
+        minHeight: '100vh',
+        backgroundColor: '#D2CF9A',
+        padding: '2.5rem 1rem',
+      }}
+    >
+      <div style={{ maxWidth: '720px', margin: '0 auto' }}>
+        {/* Top Header */}
+        <header
           style={{
-            background: '#ffffff',
-            border: '1.5px solid #BDDDFC',
-            color: '#384959',
-            fontWeight: '600',
-            padding: '0.5rem 1rem',
-            borderRadius: 'var(--radius-sm)',
-            cursor: 'pointer',
-            transition: 'all 0.2s ease',
-          }}
-          onMouseOver={(e) => {
-            e.target.style.background = '#BDDDFC';
-            e.target.style.borderColor = '#88BDF2';
-          }}
-          onMouseOut={(e) => {
-            e.target.style.background = '#ffffff';
-            e.target.style.borderColor = '#BDDDFC';
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            padding: '1.25rem 1.5rem',
+            background: '#fefee3',
+            border: '1.5px solid rgba(73, 87, 20, 0.35)',
+            borderRadius: '16px',
+            boxShadow: '0 8px 20px rgba(40, 48, 28, 0.08)',
+            marginBottom: '1.5rem',
           }}
         >
-          Sign Out
-        </button>
-      </header>
-
-      {/* Task Creation Form */}
-      <TaskForm onTaskAdded={handleAddTask} />
-
-      {/* Progress & Overview Card */}
-      <div
-        className="glass-panel"
-        style={{
-          padding: '1.25rem 1.5rem',
-          borderRadius: 'var(--radius-md)',
-          marginBottom: '1.5rem',
-        }}
-      >
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.6rem' }}>
-          <span style={{ fontSize: '0.9rem', fontWeight: '700', color: '#384959' }}>Completion Progress</span>
-          <span style={{ fontSize: '0.85rem', color: '#6A89A7', fontWeight: '600' }}>
-            {completedCount} of {totalCount} completed ({progressPercent}%)
-          </span>
-        </div>
-        <div style={{ width: '100%', height: '9px', background: '#BDDDFC', borderRadius: '10px', overflow: 'hidden' }}>
-          <div
-            style={{
-              width: `${progressPercent}%`,
-              height: '100%',
-              background: 'linear-gradient(90deg, #88BDF2 0%, #384959 100%)',
-              transition: 'width 0.4s ease',
-            }}
-          />
-        </div>
-      </div>
-
-      {/* Search and Filter Controls */}
-      <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1.2rem', flexWrap: 'wrap' }}>
-        <input
-          type="text"
-          placeholder="🔍 Search tasks..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          style={{ flex: 1, minWidth: '220px' }}
-        />
-
-        {/* Filter Pills */}
-        <div style={{ display: 'flex', gap: '0.35rem', background: '#e8f2fc', padding: '4px', borderRadius: 'var(--radius-md)', border: '1px solid #BDDDFC' }}>
-          {[
-            { key: 'all', label: `All (${totalCount})` },
-            { key: 'pending', label: `Pending (${pendingCount})` },
-            { key: 'completed', label: `Done (${completedCount})` },
-          ].map((tab) => (
-            <button
-              key={tab.key}
-              onClick={() => setFilter(tab.key)}
+          <div>
+            <span
               style={{
-                background: filter === tab.key ? '#384959' : 'transparent',
-                color: filter === tab.key ? '#ffffff' : '#6A89A7',
-                border: 'none',
-                padding: '0.45rem 0.85rem',
-                borderRadius: 'var(--radius-sm)',
-                fontSize: '0.82rem',
-                fontWeight: '700',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
+                fontSize: '0.78rem',
+                color: '#9A7E3B',
+                textTransform: 'uppercase',
+                letterSpacing: '0.08em',
+                fontWeight: '800',
               }}
             >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-      </div>
+              Personal Workspace
+            </span>
+            <h2 style={{ fontSize: '1.4rem', fontWeight: '800', color: '#28301C' }}>
+              {user?.name}
+            </h2>
+          </div>
+          <button
+            onClick={logout}
+            style={{
+              background: '#fefee3',
+              border: '1.5px solid #9A7E3B',
+              color: '#323D25',
+              fontWeight: '700',
+              padding: '0.55rem 1.1rem',
+              borderRadius: '10px',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+            }}
+            onMouseOver={(e) => {
+              e.target.style.background = '#323D25';
+              e.target.style.color = '#fcfcbb';
+              e.target.style.borderColor = '#323D25';
+            }}
+            onMouseOut={(e) => {
+              e.target.style.background = '#fefee3';
+              e.target.style.color = '#323D25';
+              e.target.style.borderColor = '#9A7E3B';
+            }}
+          >
+            Sign Out
+          </button>
+        </header>
 
-      {/* Task List */}
-      {loading ? (
-        <div style={{ textAlign: 'center', padding: '3rem', color: '#6A89A7' }}>
-          Loading your tasks...
+        {/* Task Creation Form */}
+        <TaskForm onTaskAdded={handleAddTask} />
+
+        {/* Progress & Overview Card */}
+        <div
+          style={{
+            padding: '1.25rem 1.5rem',
+            background: '#fefee3',
+            border: '1.5px solid rgba(71, 79, 26, 0.47)',
+            borderRadius: '14px',
+            boxShadow: '0 6px 16px rgba(40, 48, 28, 0.06)',
+            marginBottom: '1.5rem',
+          }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.6rem' }}>
+            <span style={{ fontSize: '0.9rem', fontWeight: '700', color: '#28301C' }}>
+              Completion Progress
+            </span>
+            <span style={{ fontSize: '0.85rem', color: '#a07c26', fontWeight: '700' }}>
+              {completedCount} of {totalCount} completed ({progressPercent}%)
+            </span>
+          </div>
+          <div style={{ width: '100%', height: '10px', background: '#E5E2B8', borderRadius: '10px', overflow: 'hidden' }}>
+            <div
+              style={{
+                width: `${progressPercent}%`,
+                height: '100%',
+                background: 'linear-gradient(90deg, #9A7E3B 0%, #323D25 100%)',
+                transition: 'width 0.4s ease',
+              }}
+            />
+          </div>
         </div>
-      ) : filteredTasks.length === 0 ? (
-        <div className="glass-panel" style={{ textAlign: 'center', padding: '3rem', borderRadius: 'var(--radius-md)' }}>
-          <p style={{ color: '#6A89A7', fontSize: '0.95rem', fontWeight: '500' }}>
-            {searchQuery
-              ? `No tasks matching "${searchQuery}"`
-              : filter === 'completed'
-              ? 'No completed tasks yet.'
-              : filter === 'pending'
-              ? 'Great job! No pending tasks.'
-              : 'No tasks yet. Create one above! ✨'}
-          </p>
-        </div>
-      ) : (
-        filteredTasks.map((task) => (
-          <TaskItem
-            key={task._id}
-            task={task}
-            onToggle={handleToggleComplete}
-            onDelete={handleDeleteTask}
+
+        {/* Search and Filter Controls */}
+        <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
+          <input
+            type="text"
+            placeholder="🔍 Search tasks..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            style={{
+              flex: 1,
+              minWidth: '220px',
+              background: '#fefee3',
+              border: '1.5px solid rgba(154, 126, 59, 0.45)',
+              color: '#28301C',
+              padding: '0.7rem 1rem',
+              borderRadius: '12px',
+              outline: 'none',
+            }}
+            onFocus={(e) => {
+              e.target.style.background = '#dcffb7';
+              e.target.style.borderColor = 'rgba(27, 43, 26, 0.73)';
+            }}
+            onBlur={(e) => {
+              e.target.style.background = '#fefee3';
+              e.target.style.borderColor = 'rgba(42, 56, 30, 0.47))';
+            }}
           />
-        ))
-      )}
+
+          {/* Filter Pills */}
+          <div
+            style={{
+              display: 'flex',
+              gap: '0.35rem',
+              background: '#fefee3',
+              padding: '4px',
+              borderRadius: '12px',
+              border: '1.5px solid rgba(42, 56, 29, 0.47))',
+            }}
+          >
+            {[
+              { key: 'all', label: `All (${totalCount})` },
+              { key: 'pending', label: `Pending (${pendingCount})` },
+              { key: 'completed', label: `Done (${completedCount})` },
+            ].map((tab) => (
+              <button
+                key={tab.key}
+                onClick={() => setFilter(tab.key)}
+                style={{
+                  background: filter === tab.key ? '#323D25' : 'transparent',
+                  color: filter === tab.key ? '#fefee3' : '#323D25',
+                  border: 'none',
+                  padding: '0.45rem 0.85rem',
+                  borderRadius: '9px',
+                  fontSize: '0.82rem',
+                  fontWeight: '700',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                }}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Task List */}
+        {loading ? (
+          <div style={{ textAlign: 'center', padding: '3rem', color: '#323D25', fontWeight: '600' }}>
+            Loading your tasks...
+          </div>
+        ) : filteredTasks.length === 0 ? (
+          <div
+            style={{
+              textAlign: 'center',
+              padding: '3rem',
+              background: '#fefee3',
+              borderRadius: '14px',
+              border: '1.5px dashed #9A7E3B',
+            }}
+          >
+            <p style={{ color: '#323D2C', fontSize: '0.95rem', fontWeight: '600' }}>
+              {searchQuery
+                ? `No tasks matching "${searchQuery}"`
+                : filter === 'completed'
+                ? 'No completed tasks yet.'
+                : filter === 'pending'
+                ? 'Great job! No pending tasks.'
+                : 'No tasks yet. Create one above! ✨'}
+            </p>
+          </div>
+        ) : (
+          filteredTasks.map((task) => (
+            <TaskItem
+              key={task._id}
+              task={task}
+              onToggle={handleToggleComplete}
+              onDelete={handleDeleteTask}
+            />
+          ))
+        )}
+      </div>
     </div>
   );
 };

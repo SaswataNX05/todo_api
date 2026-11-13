@@ -9,17 +9,18 @@ const TaskItem = ({ task, onToggle, onDelete }) => {
 
   return (
     <div
-      className="glass-panel"
       style={{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '1rem 1.25rem',
-        borderRadius: 'var(--radius-md)',
+        borderRadius: '14px',
         marginBottom: '0.75rem',
         gap: '1rem',
-        borderLeft: task.completed ? '4px solid #BDDDFC' : '4px solid #88BDF2',
-        background: task.completed ? '#f9fbfe' : '#ffffff',
+        background: task.completed ? '#F2EFE0' : '#FBFBF3',
+        border: '1.5px solid rgba(154, 126, 59, 0.35)',
+        borderLeft: task.completed ? '5px solid #323D25' : '5px solid #9A7E3B',
+        boxShadow: '0 4px 12px rgba(40, 48, 28, 0.06)',
         transition: 'all 0.2s ease',
       }}
     >
@@ -32,7 +33,7 @@ const TaskItem = ({ task, onToggle, onDelete }) => {
           style={{
             width: '20px',
             height: '20px',
-            accentColor: '#384959',
+            accentColor: '#323D25',
             cursor: 'pointer',
             flexShrink: 0,
           }}
@@ -40,17 +41,17 @@ const TaskItem = ({ task, onToggle, onDelete }) => {
 
         {/* Thumbnail Preview */}
         {task.image && (
-          <a href={`${BASE_URL}${task.image}`} target="_blank" rel="noopener noreferrer">
+          <a href={`${BASE_URL}${task.image}`} target="_blank" rel="noopener noreferrer" style={{ flexShrink: 0 }}>
             <img
               src={`${BASE_URL}${task.image}`}
               alt={task.title}
               style={{
-                width: '48px',
-                height: '48px',
+                width: '50px',
+                height: '50px',
                 objectFit: 'cover',
-                borderRadius: 'var(--radius-sm)',
-                border: '1.5px solid #BDDDFC',
-                flexShrink: 0,
+                borderRadius: '10px',
+                border: '1.5px solid #9A7E3B',
+                display: 'block',
               }}
             />
           </a>
@@ -58,12 +59,12 @@ const TaskItem = ({ task, onToggle, onDelete }) => {
 
         {/* Task Info */}
         <div style={{ overflow: 'hidden', flex: 1 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', flexWrap: 'wrap' }}>
             <h4
               style={{
-                fontSize: '0.98rem',
+                fontSize: '1rem',
                 fontWeight: '700',
-                color: task.completed ? '#6A89A7' : '#384959',
+                color: task.completed ? '#6A715D' : '#28301C',
                 textDecoration: task.completed ? 'line-through' : 'none',
                 margin: 0,
               }}
@@ -71,15 +72,18 @@ const TaskItem = ({ task, onToggle, onDelete }) => {
               {task.title}
             </h4>
 
-            {/* Pill Badge */}
+            {/* Status Pill Badge */}
             <span
               style={{
                 fontSize: '0.72rem',
                 fontWeight: '700',
-                padding: '2px 8px',
+                padding: '2px 10px',
                 borderRadius: '12px',
-                background: task.completed ? '#e5f0fa' : '#BDDDFC',
-                color: task.completed ? '#6A89A7' : '#384959',
+                background: task.completed ? 'rgba(50, 61, 37, 0.12)' : 'rgba(154, 126, 59, 0.18)',
+                color: task.completed ? '#323D25' : '#7D6328',
+                border: task.completed
+                  ? '1px solid rgba(50, 61, 37, 0.25)'
+                  : '1px solid rgba(154, 126, 59, 0.35)',
               }}
             >
               {task.completed ? 'Done' : 'Pending'}
@@ -89,8 +93,8 @@ const TaskItem = ({ task, onToggle, onDelete }) => {
           {task.description && (
             <p
               style={{
-                fontSize: '0.85rem',
-                color: '#6A89A7',
+                fontSize: '0.86rem',
+                color: '#4F5940',
                 marginTop: '0.25rem',
                 marginBottom: 0,
                 lineHeight: 1.4,
@@ -101,17 +105,47 @@ const TaskItem = ({ task, onToggle, onDelete }) => {
           )}
 
           {formattedDate && (
-            <span style={{ fontSize: '0.72rem', color: '#88BDF2', fontWeight: '600', marginTop: '0.25rem', display: 'inline-block' }}>
+            <span
+              style={{
+                fontSize: '0.73rem',
+                color: '#9A7E3B',
+                fontWeight: '700',
+                marginTop: '0.3rem',
+                display: 'inline-block',
+              }}
+            >
               Added {formattedDate}
             </span>
           )}
         </div>
       </div>
 
+      {/* Delete Button */}
       <button
         onClick={() => onDelete(task._id)}
-        className="btn-danger"
         title="Delete task"
+        style={{
+          background: '#FFFFFF',
+          color: '#28301C',
+          border: '1.5px solid rgba(154, 126, 59, 0.5)',
+          padding: '0.45rem 0.9rem',
+          borderRadius: '8px',
+          fontWeight: '700',
+          fontSize: '0.82rem',
+          cursor: 'pointer',
+          flexShrink: 0,
+          transition: 'all 0.2s ease',
+        }}
+        onMouseOver={(e) => {
+          e.target.style.background = '#BE123C';
+          e.target.style.color = '#FFFFFF';
+          e.target.style.borderColor = '#BE123C';
+        }}
+        onMouseOut={(e) => {
+          e.target.style.background = '#FFFFFF';
+          e.target.style.color = '#28301C';
+          e.target.style.borderColor = 'rgba(154, 126, 59, 0.5)';
+        }}
       >
         Delete
       </button>
